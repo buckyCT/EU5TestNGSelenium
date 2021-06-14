@@ -4,12 +4,11 @@ import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class DisabledElements {
+public class AttributeTest {
     WebDriver driver;
 
     @BeforeMethod
@@ -27,17 +26,21 @@ public class DisabledElements {
     public void test1(){
         driver.get("http://practice.cybertekschool.com/radio_buttons");
 
-        WebElement greenRadioBtn = driver.findElement(By.id("green"));
+        WebElement blueRadioBtn = driver.findElement(By.cssSelector("#blue"));
+        WebElement redRadioBtn = driver.findElement(By.id("red"));
 
-        Assert.assertFalse(greenRadioBtn.isEnabled(),"verify green button is NOT enabled (disabled)");
-        greenRadioBtn.click();
+        System.out.println(blueRadioBtn.getAttribute("checked"));
+        System.out.println(redRadioBtn.getAttribute("checked"));
+
+        driver.get("http://practice.cybertekschool.com/multiple_buttons");
+
+        WebElement button2 = driver.findElement(By.name("button2"));
+
+        System.out.println("Outer Html: "+button2.getAttribute("outerHTML"));
+        System.out.println("Inner Html: "+button2.getAttribute("innerHTML")); //does the same thing with the getText()
+
+
 
     }
 
-    @Test
-    public void test2(){
-        driver.get("http://practice.cybertekschool.com/dynamic_controls");
-
-        WebElement inputBox = driver.findElement(By.xpath("//input[@type='text']"));
-    }
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class DisabledElements {
+public class CheckBoxDemo {
     WebDriver driver;
 
     @BeforeMethod
@@ -25,19 +25,20 @@ public class DisabledElements {
 
     @Test
     public void test1(){
-        driver.get("http://practice.cybertekschool.com/radio_buttons");
+        driver.get("http://practice.cybertekschool.com/checkboxes");
 
-        WebElement greenRadioBtn = driver.findElement(By.id("green"));
+        WebElement checkBox1 = driver.findElement(By.xpath("//input[@name='checkbox1']"));
+        WebElement checkBox2 = driver.findElement(By.xpath("//input[@name='checkbox2']"));
 
-        Assert.assertFalse(greenRadioBtn.isEnabled(),"verify green button is NOT enabled (disabled)");
-        greenRadioBtn.click();
+        Assert.assertFalse(checkBox1.isSelected(),"verify box1 is NOT selected");
+        Assert.assertTrue(checkBox2.isSelected(),"verify box2 is selected");
+
+        checkBox1.click();
+        checkBox2.click();
+
+        Assert.assertTrue(checkBox1.isSelected(),"verify box1 is selected");
+        Assert.assertFalse(checkBox2.isSelected(),"verify box2 is NOT selected");
 
     }
 
-    @Test
-    public void test2(){
-        driver.get("http://practice.cybertekschool.com/dynamic_controls");
-
-        WebElement inputBox = driver.findElement(By.xpath("//input[@type='text']"));
-    }
 }
