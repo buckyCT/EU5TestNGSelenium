@@ -36,8 +36,20 @@ public class ListOfElements {
         Assert.assertEquals(buttons.size(),6,"verify buttons size");
 
         for (WebElement button : buttons) {
-            System.out.println(button.getText());
+            //System.out.println(button.isDisplayed());
+            Assert.assertTrue(button.isDisplayed(),"verify buttons are displayed");
         }
+
+        //click second button
+        buttons.get(1).click();
+    }
+
+    @Test
+    public void test2(){
+        driver.get("http://practice.cybertekschool.com/multiple_buttons");
+        List<WebElement> buttons = driver.findElements(By.tagName("button"));
+
+
 
     }
 
