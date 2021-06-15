@@ -44,7 +44,7 @@ public class SelectDropDownTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() throws InterruptedException {
         driver.get("http://practice.cybertekschool.com/dropdown");
 
         WebElement dropdownElement = driver.findElement(By.id("state"));
@@ -58,12 +58,37 @@ public class SelectDropDownTest {
 
         Assert.assertEquals(actualOption,expectedOption);
 
+        Thread.sleep(2000);
+
+        //SELECT USING TEXT
         stateDropdown.selectByVisibleText("Virginia");
 
         expectedOption="Virginia";
         actualOption=stateDropdown.getFirstSelectedOption().getText();
 
         Assert.assertEquals(actualOption,expectedOption,"verify selected option");
+
+        Thread.sleep(2000);
+
+        //SELECT USING INDEX
+        stateDropdown.selectByIndex(51);
+
+        expectedOption="Wyoming";
+        actualOption=stateDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualOption,expectedOption,"verify selected option");
+
+        Thread.sleep(2000);
+
+        //SELECT USING VALUE
+
+        stateDropdown.selectByValue("TX");
+
+        expectedOption="Texas";
+        actualOption=stateDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualOption,expectedOption,"verify selected option");
+
 
 
 
