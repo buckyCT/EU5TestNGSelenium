@@ -8,6 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
 /*
 TC #1: SeleniumEasy Checkbox Verification – Section 1
 1.Open Chrome browser
@@ -64,10 +67,10 @@ public class HW3 {
         checkAllBtn.click();
 
         //5.Verify all check boxes are checked
-        Assert.assertTrue(driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("(//input[@type='checkbox'])[3]")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("(//input[@type='checkbox'])[4]")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("(//input[@type='checkbox'])[5]")).isSelected());
+        List<WebElement> checkboxes = driver.findElements(By.className("cb1-element"));
+        for (WebElement checkbox : checkboxes) {
+            Assert.assertTrue(checkbox.isSelected());
+        }
 
         //6.Verify button text changed to “Uncheck All”
         Assert.assertEquals(checkAllBtn.getAttribute("value"),"Uncheck All");
