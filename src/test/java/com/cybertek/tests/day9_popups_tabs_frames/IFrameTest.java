@@ -58,6 +58,34 @@ public class IFrameTest {
         Thread.sleep(1000);
         tinymce.sendKeys("Aviation is love");
         Thread.sleep(1000);
+    }
+
+    @Test
+    public void test2(){
+        driver.get("http://practice.cybertekschool.com/nested_frames");
+
+        WebElement topFrame = driver.findElement(By.name("frame-top"));
+        driver.switchTo().frame(topFrame);
+
+        WebElement midFrame = driver.findElement(By.name("frame-middle"));
+        driver.switchTo().frame(midFrame);
+
+        System.out.println(driver.findElement(By.cssSelector("div#content")).getText());
+
+        driver.switchTo().parentFrame();
+
+        WebElement rightFrame = driver.findElement(By.name("frame-right"));
+        driver.switchTo().frame(rightFrame);
+
+        System.out.println(driver.findElement(By.tagName("body")).getText());
+
+        driver.switchTo().defaultContent();
+
+        driver.switchTo().frame(1);
+
+        System.out.println(driver.findElement(By.tagName("body")).getText());
+
 
     }
+
 }
