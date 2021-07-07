@@ -187,4 +187,22 @@ registration!”
         //INTERNAL SERVER ERROR... TO BE CONTINUED
 
     }
+
+    @Test
+    public void tc007(){
+        driver.get("https://practice-cybertekschool.herokuapp.com/");
+        driver.findElement(By.linkText("File Upload")).click();
+
+        String txtFileDirectory = "C:\\Users\\bucky\\IdeaProjects\\trial.txt";
+
+        driver.findElement(By.id("file-upload")).sendKeys(txtFileDirectory);
+        driver.findElement(By.id("file-submit")).click();
+
+        String actual = driver.findElement(By.tagName("h3")).getText();
+        String expected = "File Uploaded!";
+
+        Assert.assertEquals(actual,expected);
+        Assert.assertTrue(driver.findElement(By.id("uploaded-files")).isDisplayed());
+
+    }
 }
