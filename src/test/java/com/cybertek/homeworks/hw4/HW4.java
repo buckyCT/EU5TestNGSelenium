@@ -190,7 +190,7 @@ registration!”
 
     @Test
     public void tc007(){
-        driver.get("https://practice-cybertekschool.herokuapp.com/");
+        driver.get("https://practice-cybertekschool.herokuapp.com");
         driver.findElement(By.linkText("File Upload")).click();
 
         String txtFileDirectory = "C:\\Users\\bucky\\IdeaProjects\\trial.txt";
@@ -203,6 +203,23 @@ registration!”
 
         Assert.assertEquals(actual,expected);
         Assert.assertTrue(driver.findElement(By.id("uploaded-files")).isDisplayed());
+
+    }
+    @Test
+    public void tc008() {
+        driver.get("https://practice-cybertekschool.herokuapp.com");
+        driver.findElement(By.linkText("Autocomplete")).click();
+
+        String input = "United States of America";
+
+        driver.findElement(By.id("myCountry")).sendKeys(input);
+        driver.findElement(By.xpath("//input[@value='Submit']")).click();
+
+        String actual = driver.findElement(By.id("result")).getText();
+        String expected = "You selected: "+input;
+
+        Assert.assertTrue(driver.findElement(By.id("result")).isDisplayed());
+        Assert.assertEquals(actual,expected);
 
     }
 }
