@@ -169,4 +169,22 @@ registration!”
         WebElement expectedMessage = driver.findElement(By.xpath("//p[text()=\"You've successfully completed registration!\"]"));
         Assert.assertTrue(expectedMessage.isDisplayed());
     }
+
+    @Test
+    public void tc006(){
+        driver.get("https://www.tempmailaddress.com/");
+
+        String email = driver.findElement(By.id("email")).getText();
+
+        driver.get("https://practice-cybertekschool.herokuapp.com/");
+
+        driver.findElement(By.linkText("Sign Up For Mailing List")).click();
+
+        driver.findElement(By.name("full_name")).sendKeys("Mike Smith");
+        driver.findElement(By.name("email")).sendKeys(email);
+        driver.findElement(By.name("wooden_spoon")).click();
+
+        //INTERNAL SERVER ERROR... TO BE CONTINUED
+
+    }
 }
