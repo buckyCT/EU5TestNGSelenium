@@ -45,7 +45,42 @@ public class JavaScriptExecutorDemo {
         jse.executeScript("arguments[0].setAttribute('value', '" + "Hey Disabled Input" + "')",inputBox);
     }
 
+    @Test
+    public void scrollDownAndUp() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("http://practice.cybertekschool.com/infinite_scroll");
 
+        Thread.sleep(2000);
+
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+        for (int i = 0; i < 10; i++) {
+            Thread.sleep(300);
+            jse.executeScript("window.scrollBy(0,250)");
+        }
+
+        for (int i = 0; i < 10; i++) {
+            //Thread.sleep(500);
+            jse.executeScript("window.scrollBy(0,-250)");
+        }
+    }
+
+    @Test
+    public void scrollToElement() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.etsy.com/");
+
+        WebElement subscribeButton = driver.findElement(By.xpath("//button[@data-email-list-signup-btn-input]"));
+
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+        jse.executeScript("arguments[0].scrollIntoView(true);",subscribeButton);
+
+        Thread.sleep(3000);
+
+        subscribeButton.click();
+
+    }
 
 
 }
