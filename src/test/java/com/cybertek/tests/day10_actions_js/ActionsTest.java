@@ -58,4 +58,28 @@ public class ActionsTest {
         actions.dragAndDrop(source,target).perform();
     }
 
+    @Test
+    public void dragAndDropChaining() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+
+        driver.findElement(By.xpath("//button[text()='Accept Cookies']")).click();
+
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droptarget"));
+
+        Actions actions = new Actions(driver);
+
+        /*
+        actions.moveToElement(source).perform();
+        Thread.sleep(1000);
+        actions.clickAndHold(source).perform();
+        actions.moveToElement(target).perform();
+        actions.release().perform();
+        */
+
+        actions.moveToElement(source).pause(1000).clickAndHold().moveToElement(target).release().perform();
+
+    }
+
 }
