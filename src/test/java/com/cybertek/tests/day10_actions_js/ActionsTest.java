@@ -30,16 +30,32 @@ public class ActionsTest {
     public void hoverTest() throws InterruptedException {
         driver.get("http://practice.cybertekschool.com/hovers");
 
-        WebElement img1 = driver.findElement(By.tagName("img"));
+        List<WebElement> imgS = driver.findElements(By.tagName("img"));
 
         Actions actions = new Actions(driver);
 
         Thread.sleep(3000);
-        actions.moveToElement(img1).perform();
+        actions.moveToElement(imgS.get(0)).perform();
 
         WebElement viewLink = driver.findElement(By.linkText("View profile"));
         Assert.assertTrue(viewLink.isDisplayed(),"verify that View profile link is displayed");
 
+    }
+
+    @Test
+    public void dragAndDrop() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+
+        driver.findElement(By.xpath("//button[text()='Accept Cookies']")).click();
+
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droptarget"));
+
+        Actions actions = new Actions(driver);
+
+        Thread.sleep(1000);
+        actions.dragAndDrop(source,target).perform();
     }
 
 }
