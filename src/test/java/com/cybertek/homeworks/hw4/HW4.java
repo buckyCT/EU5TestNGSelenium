@@ -193,7 +193,8 @@ registration!”
         driver.get("https://practice-cybertekschool.herokuapp.com");
         driver.findElement(By.linkText("File Upload")).click();
 
-        String txtFileDirectory = "C:\\Users\\bucky\\IdeaProjects\\trial.txt";
+        String txtFileDirectory = System.getProperty("user.dir")
+                + "/src/test/resources/textfile.txt";
 
         driver.findElement(By.id("file-upload")).sendKeys(txtFileDirectory);
         driver.findElement(By.id("file-submit")).click();
