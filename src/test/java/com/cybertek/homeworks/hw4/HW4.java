@@ -221,54 +221,5 @@ registration!”
 
         Assert.assertTrue(driver.findElement(By.id("result")).isDisplayed());
         Assert.assertEquals(actual,expected);
-
-    }
-
-    @Test
-    public void tc009(){
-        driver.get("https://practice-cybertekschool.herokuapp.com");
-        driver.findElement(By.linkText("Status Codes")).click();
-
-        driver.findElement(By.linkText("200")).click();
-
-        String expected = "This page returned a 200 status code";
-        String actual = driver.findElement(By.xpath("//p")).getText();
-
-        Assert.assertTrue(driver.findElement(By.xpath("//p")).isDisplayed());
-        Assert.assertTrue(actual.contains(expected));
-
-    }
-
-    @Test
-    public void tc010() {
-        driver.get("https://practice-cybertekschool.herokuapp.com");
-        driver.findElement(By.linkText("Status Codes")).click();
-        driver.findElement(By.linkText("301")).click();
-
-        String expected = "This page returned a 301 status code";
-        String actual = driver.findElement(By.xpath("//p")).getText();
-
-        Assert.assertTrue(driver.findElement(By.xpath("//p")).isDisplayed());
-        Assert.assertTrue(actual.contains(expected));
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
