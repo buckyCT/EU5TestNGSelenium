@@ -8,10 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateCalendarEventsPage extends BasePage {
 
-    public CreateCalendarEventsPage(){
-        PageFactory.initElements(Driver.get(), this);
-    }
-
     @FindBy(css = "[id^='recurrence-repeat-view']")
     public WebElement repeat;
 
