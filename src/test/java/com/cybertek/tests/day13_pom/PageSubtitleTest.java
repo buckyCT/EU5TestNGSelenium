@@ -26,12 +26,12 @@ public class PageSubtitleTest extends TestBase {
 
         dashboardPage.navigateToModule("Activities","Calendar Events");
 
-        expectedSubtitle = "Calendar Events";
-        actualSubtitle = dashboardPage.getPageSubTitle();
-
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
         calendarEventsPage.waitUntilLoaderScreenDisappear();
+
+        expectedSubtitle = "Calendar Events";
+        actualSubtitle = dashboardPage.getPageSubTitle();
 
         Assert.assertEquals(actualSubtitle,expectedSubtitle);
 

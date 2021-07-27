@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Vytrack Automation" verbose="1">
+    <test name="Vytrack Smoke Test">
+<!--        <packages>-->
+<!--            <package name="com.cybertek.tests.day14_extent_reports"></package>-->
+<!--            <package name="com.cybertek.tests.day11_webtables"></package>-->
+<!--        </packages>-->
+        
+<!--        <classes>-->
+<!--            <class name="com.cybertek.tests.day14_extent_reports.NegativeLoginTestWithReport"></class>-->
+<!--            <class name="com.cybertek.tests.day13_pom.PageSubtitleTest"></class>-->
+<!--        </classes>-->
+        
+        <classes>
+            <class name="com.cybertek.tests.day11_webtables.WebTablesExample">
+                <methods>
+                    <include name="getAllHeaders"></include>
+<!--                    <exclude name="getAllHeaders"></exclude>-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
