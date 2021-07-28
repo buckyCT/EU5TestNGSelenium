@@ -4,6 +4,7 @@ import com.cybertek.pages.CalendarEventsPage;
 import com.cybertek.pages.DashboardPage;
 import com.cybertek.pages.LoginPage;
 import com.cybertek.tests.TestBase;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -80,6 +81,25 @@ public class VytrackHW extends TestBase {
         }
 
         extentLogger.pass("TC004 Number of Calendar Events Test PASS");
+    }
+
+    @Test
+    public void tc005(){
+        extentLogger = report.createTest("TC005 Checkbox Test");
+
+        loginAndNavToModule();
+        extentLogger.info("Login as Store Manager");
+        extentLogger.info("Navigate to ==> Activities -> Calendar Events");
+
+        calendarEventsPage.selectAllCheckBox.click();
+        extentLogger.info("Click the checkbox which selects all checkboxes");
+
+        extentLogger.info("Verify that all calendar events checkboxes were selected");
+        for (WebElement checkBox : calendarEventsPage.getAllRowsCheckBoxes()) {
+            Assert.assertTrue(checkBox.isSelected(),"Verify that checkbox was selected");
+        }
+
+        extentLogger.pass("TC005 Checkbox Test PASS");
     }
 
 }

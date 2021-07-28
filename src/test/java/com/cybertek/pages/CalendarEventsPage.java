@@ -25,6 +25,14 @@ public class CalendarEventsPage extends BasePage {
     public WebElement totalOfRecordsWE;
     public String totalOfRecordsString = totalOfRecordsWE.getText().split(" ")[2];
 
+    @FindBy(xpath = "//input[@type='checkbox'][@data-select]")
+    public WebElement selectAllCheckBox;
+
+    public List<WebElement> getAllRowsCheckBoxes(){
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//input[@type='checkbox'][@data-role]"));
+        return elements;
+    }
+
     public List<WebElement> getAllRowsOfTableInPage(){
         List<WebElement> elements = Driver.get().findElements(By.xpath("//table/tbody/tr"));
         return elements;
