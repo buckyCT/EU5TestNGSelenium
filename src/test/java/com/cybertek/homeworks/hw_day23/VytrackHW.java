@@ -29,7 +29,7 @@ public class VytrackHW extends TestBase {
         extentLogger.info("Verify that page subtitle \"Options\" is displayed");
         Assert.assertTrue(calendarEventsPage.optionsBtn.isDisplayed());
 
-        extentLogger.pass("TC001 Options Button Test PASSED");
+        extentLogger.pass("TC001 Options Button Test PASS");
     }
 
     @Test
@@ -43,7 +43,43 @@ public class VytrackHW extends TestBase {
         extentLogger.info("Verify that page number is equals to \"1\"");
         Assert.assertEquals(calendarEventsPage.pageNumber.getAttribute("value"),"1");
 
-        extentLogger.pass("TC002 Page Number Test PASSED");
+        extentLogger.pass("TC002 Page Number Test PASS");
+    }
+
+    @Test
+    public void tc003(){
+        extentLogger = report.createTest("TC003 View Per Page Dropdown Test");
+
+        loginAndNavToModule();
+        extentLogger.info("Login as Store Manager");
+        extentLogger.info("Navigate to ==> Activities -> Calendar Events");
+
+        extentLogger.info("Verify that view per page number is equals to \"25\"");
+//        Assert.assertTrue(calendarEventsPage.viewPerPage.getText().contains("25"),"Verify that view per page number is equals to \"25\"");
+        Assert.assertEquals(calendarEventsPage.viewPerPage.getText().trim(),"25");
+
+        extentLogger.pass("TC003 View Per Page Dropdown Test PASS");
+    }
+
+    @Test
+    public void tc004(){
+        extentLogger = report.createTest("TC004 Number of Calendar Events Test");
+
+        loginAndNavToModule();
+        extentLogger.info("Login as Store Manager");
+        extentLogger.info("Navigate to ==> Activities -> Calendar Events");
+
+        int records = Integer.parseInt(calendarEventsPage.totalOfRecordsString);
+        int numberOfRows = calendarEventsPage.getAllRowsOfTableInPage().size();
+
+        extentLogger.info("Verify that number of calendar events (rows in the table) is equals to number of records");
+        if(records>25){
+            Assert.assertEquals(numberOfRows,25);
+        }else {
+            Assert.assertEquals(numberOfRows,records);
+        }
+
+        extentLogger.pass("TC004 Number of Calendar Events Test PASS");
     }
 
 }

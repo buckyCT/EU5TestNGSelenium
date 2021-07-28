@@ -1,7 +1,11 @@
 package com.cybertek.pages;
 
+import com.cybertek.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class CalendarEventsPage extends BasePage {
 
@@ -13,5 +17,17 @@ public class CalendarEventsPage extends BasePage {
 
     @FindBy(xpath = "//input[@type='number']")
     public WebElement pageNumber;
+
+    @FindBy(xpath = "//div[@class='btn-group']/button")
+    public WebElement viewPerPage;
+
+    @FindBy(xpath = "(//label[@class='dib'])[3]")
+    public WebElement totalOfRecordsWE;
+    public String totalOfRecordsString = totalOfRecordsWE.getText().split(" ")[2];
+
+    public List<WebElement> getAllRowsOfTableInPage(){
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//table/tbody/tr"));
+        return elements;
+    }
 
 }
