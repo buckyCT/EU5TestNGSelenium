@@ -23,10 +23,40 @@ public class CalendarEventsPage extends BasePage {
 
     @FindBy(xpath = "(//label[@class='dib'])[3]")
     public WebElement totalOfRecordsWE;
-    public String totalOfRecordsString = totalOfRecordsWE.getText().split(" ")[2];
 
     @FindBy(xpath = "//input[@type='checkbox'][@data-select]")
     public WebElement selectAllCheckBox;
+
+    @FindBy(xpath = "//i[@class='fa-filter hide-text']")
+    public WebElement filterBtn;
+    @FindBy(xpath = "//div[@class=\"pull-right grid-toolbar-tools\"]/div/div/a[@title='Filters']")
+    public  WebElement filterBtn2;
+
+    @FindBy(xpath = "//input[@type='text'][@name='value']")
+    public WebElement filterInputBox;
+
+    @FindBy(xpath = "//button[@data-toggle='dropdown'][@class='btn dropdown-toggle ']")
+    public WebElement viewPerPageDropdown;
+
+    @FindBy(xpath = "//span[text()='Title']")
+    public WebElement sortWithTitle;
+
+    @FindBy(xpath = "//span[text()='Title']/..")
+    public WebElement sortWithTitle2;
+
+    @FindBy(xpath = "//select[@name='start']")
+    public WebElement startBetweenSELECT;
+
+    @FindBy(xpath = "//input[@placeholder='Choose a date']")
+    public WebElement chooseADateInputBox;
+
+    public List<WebElement> viewPerPageDropdownList(){
+        return Driver.get().findElements(By.xpath("//a[@class='dropdown-item']"));
+    }
+
+    public WebElement getFilterSelector(String name){
+        return Driver.get().findElement(By.xpath("//div[contains(text(),'" +name+ "')]"));
+    }
 
     public List<WebElement> getAllRowsCheckBoxes(){
         List<WebElement> elements = Driver.get().findElements(By.xpath("//input[@type='checkbox'][@data-role]"));
