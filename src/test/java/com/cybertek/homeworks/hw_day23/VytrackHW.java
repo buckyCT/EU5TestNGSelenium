@@ -5,6 +5,7 @@ import com.cybertek.pages.CalendarEventsPage;
 import com.cybertek.pages.DashboardPage;
 import com.cybertek.pages.LoginPage;
 import com.cybertek.tests.TestBase;
+import com.cybertek.utilities.BrowserUtils;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -112,7 +113,7 @@ public class VytrackHW extends TestBase {
     }
 
     @Test
-    public void tc006() throws InterruptedException {
+    public void tc006(){
         extentLogger = report.createTest("TC006 Testers meeting event Test");
 
         loginAndNavToModule();
@@ -133,7 +134,7 @@ public class VytrackHW extends TestBase {
         extentLogger.info("Type 'Nov 27, 2020' into Choose a date box");
 
         calendarEventsPage.waitUntilLoaderScreenDisappear();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
 
         calendarEventsPage.getFilterSelector("Title").click();
         extentLogger.info("Click Title filter");
@@ -143,7 +144,7 @@ public class VytrackHW extends TestBase {
 
         calendarEventsPage.waitUntilLoaderScreenDisappear();
 
-        Thread.sleep(5000);
+        BrowserUtils.waitFor(5);
 
         WebElement x = Driver.get().findElement(By.xpath("//tbody/tr/td[text()='Testers meeting']"));
         x.click();
@@ -170,7 +171,7 @@ public class VytrackHW extends TestBase {
         String expectedCall = "No";
 
         String expectedOrganizer = "Stephan Haley";
-        String actualOrganizer = Driver.get().findElement(By.xpath("//label[text()='Organizer']/../div/div/div/a")).getText();
+        String actualOrganizer = calendarEventViewPage.getOrganizerDetail().getText();
 
         extentLogger.info("Verify all data");
 
